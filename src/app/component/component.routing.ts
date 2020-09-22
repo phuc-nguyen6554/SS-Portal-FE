@@ -15,6 +15,7 @@ import { NgbdtimepickerBasicComponent } from './timepicker/timepicker.component'
 import { ButtonsComponent } from './buttons/buttons.component';
 import { CardsComponent } from './card/card.component';
 import { ToastComponent } from './toast/toast.component';
+import { CreatebookingComponent } from './createbooking/createbooking.component';
 
 export const ComponentsRoutes: Routes = [
 	{
@@ -193,6 +194,18 @@ export const ComponentsRoutes: Routes = [
 				component: ToastComponent,
 				data: {
 					title: 'Toast',
+				}
+			},
+			{
+				path: 'booking',
+				component: CreatebookingComponent,
+				data: {
+					title: 'Bookings',
+					urls: [
+						{ title: 'Dashboard', url: '/dashboard' },
+						{ title: 'ngComponent' },
+						{ title: 'Bookings' }
+					]
 				}
 			}
 		]

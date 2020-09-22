@@ -137,4 +137,12 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: [],
   },
+  {
+    path: "/component/booking",
+    title: "Bookings",
+    icon: "mdi mdi-alert",
+    class: "",
+    extralink: false,
+    submenu: [],
+  },
 ];

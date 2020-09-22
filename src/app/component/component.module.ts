@@ -22,6 +22,11 @@ import { ButtonsComponent } from './buttons/buttons.component';
 import { CardsComponent } from './card/card.component';
 import { ToastComponent } from './toast/toast.component';
 import { ToastsContainer } from './toast/toast-container';
+import { CreatebookingComponent } from './createbooking/createbooking.component';
+
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import {FlatpickrModule} from 'angularx-flatpickr';
 
 @NgModule({
   imports: [
@@ -29,7 +34,9 @@ import { ToastsContainer } from './toast/toast-container';
     RouterModule.forChild(ComponentsRoutes),
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    FlatpickrModule.forRoot()
   ],
   declarations: [
     NgbdpregressbarBasicComponent,
@@ -47,7 +54,8 @@ import { ToastsContainer } from './toast/toast-container';
     ButtonsComponent,
     CardsComponent,
     ToastComponent,
-    ToastsContainer
+    ToastsContainer,
+    CreatebookingComponent
   ]
 })
 export class ComponentsModule {}

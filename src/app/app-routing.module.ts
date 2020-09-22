@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { FullComponent } from './layouts/full/full.component';
 
+import { SigninComponent } from './signin/signin.component';
+
 export const Approutes: Routes = [
   {
     path: '',
@@ -18,6 +20,9 @@ export const Approutes: Routes = [
         loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
       }
     ]
+  },
+  {
+    path: 'login', component: SigninComponent
   },
   {
     path: '**',
