@@ -1,0 +1,48 @@
+<div class="create-form">
+  <h1>Create leave request</h1>
+  <div class="input-group">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" name="leaveName" id="leaveName" [(ngModel)]="leaveName" placeholder="Your answer">
+  </div>
+
+  <div class="input-group">
+    <span (click)="addLeaveDate()" class="material-icons">add_task</span>
+  </div>
+
+  <div class="input-group" *ngFor="let item of leaveDateNums">
+    <mat-form-field appearance="fill">
+      <mat-label>Leave Date</mat-label>
+      <input matInput type="date"
+             placeholder="Enter leave date" (change)="onChangeDatesEvent($event,this.item)">
+    </mat-form-field>
+    <span (click)="removeLeaveDate(this.item)" class="material-icons remove-leave-date">remove</span>
+  </div>
+
+  <div class="input-group">
+    <mat-label>AM/PM/All day</mat-label>
+  </div>
+
+  <div class="input-group">
+    <mat-radio-group [(ngModel)]="leaveTime" aria-label="Select an option">
+      <mat-radio-button value="AM">AM</mat-radio-button>
+      <mat-radio-button value="PM">PM</mat-radio-button>
+      <mat-radio-button value="Fullday">Fullday</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="input-group">
+    <mat-label>Type of leave</mat-label>
+  </div>
+
+  <div class="input-group">
+    <mat-radio-group [(ngModel)]="leaveType" aria-label="Select an option">
+      <mat-radio-button *ngFor="let item of LeaveType" value="{{item.id}}">{{item.name}}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="input-group">
+    <mat-label>Reason for leave</mat-label>
+    <input matInput type="text" name="leaveReason" id="leaveReason" [(ngModel)]="leaveReason" placeholder="Your answer">
+  </div>
+  <button class="create-btn" (click)="CreatLeave()">Submit</button>
+</div>
