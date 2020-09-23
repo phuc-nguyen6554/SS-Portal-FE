@@ -108,6 +108,7 @@
       <tr>
         <th>Title</th>
         <th>Room</th>
+        <th>Member</th>
         <th>Date</th>
         <th>Starts Time</th>
         <th>Ends Time</th>
@@ -128,6 +129,9 @@
         <td>
           <h4 *ngIf="room">{{room.roomName}}</h4>
         </td> <!--Room-->
+        <td>
+          {{event.meta.memberName}}
+        </td> <!--Member-->
         <td>
           <input
             class="form-control"

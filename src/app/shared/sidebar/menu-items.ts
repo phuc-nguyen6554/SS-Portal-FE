@@ -145,4 +145,12 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: [],
   },
+  {
+    path: '/component/create-leave',
+    title: 'Create Leave',
+    icon: 'mdi mdi-run',
+    class: '',
+    extralink: false,
+    submenu: [],
+  },
 ];

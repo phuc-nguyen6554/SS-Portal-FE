@@ -25,9 +25,17 @@ import { ComponentsRoutes } from './component.routing';
 import { CreatebookingComponent } from './createbooking/createbooking.component';
 import { CreateLeaveRequestComponent } from './create-leave-request/createleave.component';
 
+// Angular Calendar
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import {FlatpickrModule} from 'angularx-flatpickr';
+
+// @angular/material
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -37,7 +45,14 @@ import {FlatpickrModule} from 'angularx-flatpickr';
     ReactiveFormsModule,
     NgbModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    FlatpickrModule.forRoot()
+    FlatpickrModule.forRoot(),
+
+    // @angular/material
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatInputModule
   ],
   declarations: [
     // NgbdpregressbarBasicComponent,
