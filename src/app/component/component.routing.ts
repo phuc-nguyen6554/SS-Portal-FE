@@ -17,6 +17,7 @@ import { Routes } from '@angular/router';
 // import { ToastComponent } from './toast/toast.component';
 import { CreatebookingComponent } from './createbooking/createbooking.component';
 import { CreateLeaveRequestComponent } from './create-leave-request/createleave.component';
+import {LeaveComponent} from './leave-request/leave.component';
 
 export const ComponentsRoutes: Routes = [
 	{
@@ -218,6 +219,18 @@ export const ComponentsRoutes: Routes = [
 						{ title: 'Dashboard', url: '/dashboard' },
 						{ title: 'ngComponent' },
 						{ title: 'Create Leave' }
+					]
+				}
+			},
+			{
+				path: 'leave',
+				component: LeaveComponent,
+				data: {
+					title: 'Leave Requests',
+					urls: [
+						{ title: 'Dashboard', url: '/dashboard' },
+						{ title: 'ngComponent' },
+						{ title: 'Leave Requests' }
 					]
 				}
 			}

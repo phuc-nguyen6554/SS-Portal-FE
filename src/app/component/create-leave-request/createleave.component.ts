@@ -17,7 +17,6 @@ export class CreateLeaveRequestComponent implements OnInit {
   leaveDates: string[] = [];
   isSelectLeaveDate: boolean;
   leaveName: string;
-  leaveDate: string;
   leaveReason: string;
   leaveTime: number;
   leaveType: number;
@@ -29,6 +28,8 @@ export class CreateLeaveRequestComponent implements OnInit {
   onChangeDatesEvent(event: any, index){
     this.isSelectLeaveDate = true;
     this.leaveDates[index] = event.target.value;
+    // this.leaveDates.push(event.target.value);
+    console.log(this.leaveDates);
   }
 
   ngOnInit(): void {
@@ -55,9 +56,10 @@ export class CreateLeaveRequestComponent implements OnInit {
     console.log(this.leaveDateNums);
   }
   // tslint:disable-next-line:typedef
-  removeLeaveDate(item) {
-    this.leaveDateNums.splice(this.leaveDateNums.indexOf(item));
-    console.log(this.leaveDateNums);
+  removeLeaveDate(key) {
+    this.leaveDateNums.splice(key, 1);
+    this.leaveDates.splice(key, 1);
+    console.log();
   }
   CreatLeave(): void{
     console.log(this.leaveDates);

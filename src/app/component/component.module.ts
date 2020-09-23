@@ -24,6 +24,7 @@ import { ComponentsRoutes } from './component.routing';
 // import { ToastsContainer } from './toast/toast-container';
 import { CreatebookingComponent } from './createbooking/createbooking.component';
 import { CreateLeaveRequestComponent } from './create-leave-request/createleave.component';
+import {LeaveComponent} from './leave-request/leave.component';
 
 // Angular Calendar
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -72,7 +73,8 @@ import { MatInputModule } from '@angular/material/input';
     // ToastComponent,
     // ToastsContainer,
     CreatebookingComponent,
-    CreateLeaveRequestComponent
+    CreateLeaveRequestComponent,
+    LeaveComponent
   ]
 })
 export class ComponentsModule {}

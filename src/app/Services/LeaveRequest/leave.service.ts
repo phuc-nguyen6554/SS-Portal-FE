@@ -25,8 +25,12 @@ export class LeaveService {
     return this.http.get<Leave[]>(this.apiEndpointList, {headers: this.header});
   }
 
+  getFilterLeave(obj): Observable<Leave[]>{
+    return this.http.get<Leave[]>(this.apiEndpointList, {headers: this.header, params: obj});
+  }
+
   createLeave(leave: Leave): Observable<any>{
-    return this.http.post<any>(this.apiEndpointCreate, leave, {headers: this.header, observe: 'response'});
+      return this.http.post<any>(this.apiEndpointCreate, leave, {headers: this.header, observe: 'response'});
   }
 
   deleteBooking(id: number): Observable<any>{
