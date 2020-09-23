@@ -26,7 +26,7 @@ const colors: any = {
 
 @Component({
   selector: 'app-createbooking',
-  templateUrl: './createbooking.component.html',
+  templateUrl: './createbooking.component.html', 
   styleUrls: ['./createbooking.component.css']
 })
 export class CreatebookingComponent implements OnInit {
@@ -70,6 +70,7 @@ export class CreatebookingComponent implements OnInit {
   disabled = true;
 
   room: Room;
+  datePicker: Date;
 
   activeDayIsOpen = false;
 
@@ -80,17 +81,44 @@ export class CreatebookingComponent implements OnInit {
     this.getRooms();
   }
 
+  dateChange(event: CalendarEvent<CalendarMeta>): void{
+    const date = new Date(event.meta.date);
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+    const index = this.events.findIndex(value => {
+      return value.id === event.id;
+    });
+
+    // Set Start day
+    // this.events[index].start.setDate(day);
+    // this.events[index].start.setMonth(month);
+    // this.events[index].start.setFullYear(year);
+
+    // // Set end day
+    // this.events[index].end.setDate(day);
+    // this.events[index].end.setMonth(month);
+    // this.events[index].end.setFullYear(year);
+
+    this.editingEvents.push(parseInt(event.id.toString(), null));
+  }
+
   getEvent(): void{
     this.events = [];
     this.bookingService.getAllBooking()
       .subscribe(response => {
         for ( const item of response)
         {
+          const start = new Date(item.from);
+          const end = new Date(item.to);
+          const description = item.description !== null ? item.description : 'New Event';
+
           const event: CalendarEvent<CalendarMeta> = {
             id: item.id,
-            start: new Date(item.from),
-            end: new Date(item.to),
-            title: format(new Date(item.from), 'H:mm') + ' ' + item.memberName,
+            start,
+            end,
+            title: `${item.memberName}: ${format(start, 'H:mm')} -  ${format(end, 'H:mm')} ${description}`,
             color: colors.red,
             actions: this.actions,
             resizable: {
@@ -100,7 +128,11 @@ export class CreatebookingComponent implements OnInit {
             draggable: true,
             meta: {
               memberName: item.memberName,
-              memberEmail: item.memberEmail
+              memberEmail: item.memberEmail,
+              date: new Date(item.from),
+              startTime: new Date(item.from),
+              endTime: new Date(item.to),
+              description: item.description
             }
           };
 
@@ -139,29 +171,27 @@ export class CreatebookingComponent implements OnInit {
       }
       return iEvent;
     });
-    // this.handleEvent('Dropped or resized', event);
     this.dataChanged(event);
   }
 
   dataChanged(event: CalendarEvent): void{
     this.editingEvents.push(parseInt(event.id.toString(), null));
-
-    // const index = this.events.findIndex(x => x.id === event.id);
-    // console.log(index);
-    // this.events[index].title = 'Thay doi goi ne';
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    console.log('event');
+    // this.modalData = { event, action };
+    // this.modal.open(this.modalContent, { size: 'lg' });
   }
 
   addEvent(): void {
+    const endDay = new Date();
+    endDay.setHours(19, 0);
     this.events = [...this.events, {
         id: -1,
         title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
+        start: new Date(),
+        end: endDay,
         color: colors.red,
         draggable: true,
         resizable: {
@@ -170,23 +200,55 @@ export class CreatebookingComponent implements OnInit {
         },
         meta: {
           memberName: '',
-          memberEmail: ''
+          memberEmail: '',
+          date: new Date(),
+          startTime: new Date(),
+          endTime: endDay,
+          description: 'New Event'
         }
     }];
   }
 
   saveEvent(event: CalendarEvent<CalendarMeta>): void{
-    if (event.start > event.end) {
+    let date;
+    let timeStart;
+    let timeEnd;
+
+    // Need better solution
+    if (typeof(event.meta.date) === 'string'){
+      date = event.meta.date;
+    }else{
+      date = format(event.meta.date, 'Y/M/d');
+    }
+
+    if (typeof(event.meta.startTime) === 'string'){
+      timeStart = event.meta.startTime;
+    }else{
+      timeStart = format(event.meta.startTime, 'H:m');
+    }
+
+    if (typeof(event.meta.endTime) === 'string'){
+      timeEnd = event.meta.endTime;
+    }else{
+      timeEnd = format(event.meta.endTime, 'H:m');
+    }
+
+    const start = new Date(date + ' ' + timeStart);
+    const end = new Date(date + ' ' + timeEnd);
+
+    if (start > end) {
       alert('Start must be before End');
       return;
     }
+
     const booking: Booking = {
       id: parseInt(event.id.toString(), null),
-      from: format(event.start, 'Y/M/d H:m'),
-      to: format(event.end, 'Y/M/d H:m'),
+      from: format(start, 'Y/M/d H:m'),
+      to: format(end, 'Y/M/d H:m'),
       roomID: this.room.id,
       memberName: event.meta.memberName,
-      memberEmail: event.meta.memberEmail
+      memberEmail: event.meta.memberEmail,
+      description: event.meta.description
     };
     if (event.id === -1)
     {
@@ -221,6 +283,10 @@ export class CreatebookingComponent implements OnInit {
     this.bookingService.deleteBooking(parseInt(eventToDelete.id.toString(), null))
       .subscribe(result => {
         this.events = this.events.filter((event) => event !== eventToDelete);
+      },
+      error => {
+        alert(error.error);
+        console.log(error);
       });
   }
 

@@ -6,23 +6,24 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ComponentsRoutes } from './component.routing';
-import { NgbdpregressbarBasicComponent } from './progressbar/progressbar.component';
-import { NgbdpaginationBasicComponent } from './pagination/pagination.component';
-import { NgbdAccordionBasicComponent } from './accordion/accordion.component';
-import { NgbdAlertBasicComponent } from './alert/alert.component';
-import { NgbdCarouselBasicComponent } from './carousel/carousel.component';
-import { NgbdDatepickerBasicComponent } from './datepicker/datepicker.component';
-import { NgbdDropdownBasicComponent } from './dropdown-collapse/dropdown-collapse.component';
-import { NgbdModalBasicComponent } from './modal/modal.component';
-import { NgbdPopTooltipComponent } from './popover-tooltip/popover-tooltip.component';
-import { NgbdratingBasicComponent } from './rating/rating.component';
-import { NgbdtabsBasicComponent } from './tabs/tabs.component';
-import { NgbdtimepickerBasicComponent } from './timepicker/timepicker.component';
-import { ButtonsComponent } from './buttons/buttons.component';
-import { CardsComponent } from './card/card.component';
-import { ToastComponent } from './toast/toast.component';
-import { ToastsContainer } from './toast/toast-container';
+// import { NgbdpregressbarBasicComponent } from './progressbar/progressbar.component';
+// import { NgbdpaginationBasicComponent } from './pagination/pagination.component';
+// import { NgbdAccordionBasicComponent } from './accordion/accordion.component';
+// import { NgbdAlertBasicComponent } from './alert/alert.component';
+// import { NgbdCarouselBasicComponent } from './carousel/carousel.component';
+// import { NgbdDatepickerBasicComponent } from './datepicker/datepicker.component';
+// import { NgbdDropdownBasicComponent } from './dropdown-collapse/dropdown-collapse.component';
+// import { NgbdModalBasicComponent } from './modal/modal.component';
+// import { NgbdPopTooltipComponent } from './popover-tooltip/popover-tooltip.component';
+// import { NgbdratingBasicComponent } from './rating/rating.component';
+// import { NgbdtabsBasicComponent } from './tabs/tabs.component';
+// import { NgbdtimepickerBasicComponent } from './timepicker/timepicker.component';
+// import { ButtonsComponent } from './buttons/buttons.component';
+// import { CardsComponent } from './card/card.component';
+// import { ToastComponent } from './toast/toast.component';
+// import { ToastsContainer } from './toast/toast-container';
 import { CreatebookingComponent } from './createbooking/createbooking.component';
+import { CreateLeaveRequestComponent } from './create-leave-request/createleave.component';
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -39,23 +40,24 @@ import {FlatpickrModule} from 'angularx-flatpickr';
     FlatpickrModule.forRoot()
   ],
   declarations: [
-    NgbdpregressbarBasicComponent,
-    NgbdpaginationBasicComponent,
-    NgbdAccordionBasicComponent,
-    NgbdAlertBasicComponent,
-    NgbdCarouselBasicComponent,
-    NgbdDatepickerBasicComponent,
-    NgbdDropdownBasicComponent,
-    NgbdModalBasicComponent,
-    NgbdPopTooltipComponent,
-    NgbdratingBasicComponent,
-    NgbdtabsBasicComponent,
-    NgbdtimepickerBasicComponent,
-    ButtonsComponent,
-    CardsComponent,
-    ToastComponent,
-    ToastsContainer,
-    CreatebookingComponent
+    // NgbdpregressbarBasicComponent,
+    // NgbdpaginationBasicComponent,
+    // NgbdAccordionBasicComponent,
+    // NgbdAlertBasicComponent,
+    // NgbdCarouselBasicComponent,
+    // NgbdDatepickerBasicComponent,
+    // NgbdDropdownBasicComponent,
+    // NgbdModalBasicComponent,
+    // NgbdPopTooltipComponent,
+    // NgbdratingBasicComponent,
+    // NgbdtabsBasicComponent,
+    // NgbdtimepickerBasicComponent,
+    // ButtonsComponent,
+    // CardsComponent,
+    // ToastComponent,
+    // ToastsContainer,
+    CreatebookingComponent,
+    CreateLeaveRequestComponent
   ]
 })
 export class ComponentsModule {}

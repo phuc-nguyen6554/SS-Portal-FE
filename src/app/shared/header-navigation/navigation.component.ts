@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import {JwtHelperService} from '@auth0/angular-jwt';
-//declare var $: any;
+import {ClaimTypes} from '../../Const/ClaimTypes';
+import {User} from '../../Models/User';
 
 @Component({
   selector: 'app-navigation',
@@ -11,12 +12,17 @@ export class NavigationComponent implements OnInit{
   toggleSidebar = new EventEmitter<void>();
 
   public showSearch = false;
-  public Avatar = '';
+  public User: User;
 
   constructor(private jwtHelper: JwtHelperService) {}
 
   ngOnInit() {
     const jwt_decode = this.jwtHelper.decodeToken();
-    this.Avatar = jwt_decode['Avatar'];
+    this.User = {
+      Name: jwt_decode[ClaimTypes.Name],
+      Email: jwt_decode[ClaimTypes.Email],
+      Avatar: jwt_decode[ClaimTypes.Avatar],
+      Role: jwt_decode[ClaimTypes.Role]
+    };
   }
 }

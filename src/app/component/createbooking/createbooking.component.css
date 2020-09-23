@@ -1,51 +1,18 @@
-/* div.create-form{
-    width:40%;
-    margin-left: 30%;
+.invisible-btn{
+    background: none; 
+    outline: none; 
+    border: none; 
+    width: 40%;
 }
 
-div.create-form h1{
-    text-align: center;
+.icon-btn{
+    font-size: 30px;
 }
 
-div.create-form .my-input, div.create-form select{
-    box-sizing: border-box;
-    width: 100% !important;
-    padding: 6px;
+.save-btn-icon{
+    color: #388E3C;
 }
 
-div.input-group{
-    margin-top: 10px;
+.delete-btn-icon{
+    color: #D32F2F;
 }
-
-div.group-inline{
-    display: flex;
-}
-
-div.group-inline .right{
-    margin-left: auto;
-}
-
-.create-btn{
-    width: 100%;
-    border: none;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: forestgreen;
-}
-
-.calendar{
-    width: 2.75rem;
-background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEUSURBVEiJ7ZQxToVAEIY/YCHGxN6XGOIpnpaEsBSeQC9ArZbm9TZ6ADyBNzAhQGGl8Riv4BLAWAgmkpBYkH1b8FWT2WK/zJ8ZJ4qiI6XUI3ANnGKWBnht2/ZBDRK3hgVGNsCd7/ui+JkEIrKtqurLpEWaphd933+IyI3LEIdpCYCiKD6HcuOa/nwOa0ScJEnk0BJg0UTUWJRl6RxCYEzEmomsIlPU3IPW+grIAbquy+q6fluy/28RIBeRMwDXdXMgXLj/B2uimRXpui4D9sBeRLKl+1N+L+t6RwbWrZliTTTr1oxYtzVWiTQAcRxvTX+eJMnlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=)!important;
-background-repeat: no-repeat;
-background-size: 23px;
-background-position: 50%;
-} */
-
-h3 {
-    margin: 0 0 10px;
-  }
-  
-  pre {
-    background-color: #f5f5f5;
-    padding: 15px;
-  }

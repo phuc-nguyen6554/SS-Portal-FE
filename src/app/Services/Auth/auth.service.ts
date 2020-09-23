@@ -9,6 +9,9 @@ export class AuthService {
   constructor(private jwtService: JwtHelperService) { }
 
   ValidateJWT(): boolean {
-    return !this.jwtService.isTokenExpired();
+    if (this.jwtService.tokenGetter() !== 'Invalid') {
+      return !this.jwtService.isTokenExpired();
+    }
+    return false;
   }
 }

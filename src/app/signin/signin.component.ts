@@ -22,7 +22,7 @@ export class SigninComponent implements OnInit {
         this.signService.login(userdata.idToken)
           .subscribe(data => {
             localStorage.setItem('JWT_token', data.token);
-            this.router.navigate(['booking']);
+            this.router.navigate(['/dashboard']);
           });
       });
   }
