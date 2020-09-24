@@ -15,7 +15,7 @@
       <mat-label>Select leave type</mat-label>
       <select matNativeControl (change)="dropDownChange($event, 'leave-type')">
         <option  value="-1">All Leave Type</option>
-        <option *ngFor="let item of LeaveType" 
+        <option *ngFor="let item of LeaveType"
         value="{{item.id}}">{{item.name}}</option>
       </select>
     </mat-form-field>
@@ -28,7 +28,7 @@
         <option value="PM">PM</option>
         <option value="Fullday">Fullday</option>
       </select>
-    </mat-form-field>    
+    </mat-form-field>
   </div>
 
   <div class="input-group col">
@@ -39,7 +39,7 @@
   </div>
 </div>
 
-<a [routerLink]="['/leave-request-create']" class="btn btn-link">Create Leave Request</a>
+<a [routerLink]="['/component/create-leave']" class="btn btn-link">Create Leave Request</a>
 
 <table class="booking-table table table-striped">
   <tr>
