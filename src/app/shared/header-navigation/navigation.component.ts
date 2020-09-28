@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {ClaimTypes} from '../../Const/ClaimTypes';
 import {User} from '../../Models/User';
+import {SocialAuthService} from 'angularx-social-login';
 
 @Component({
   selector: 'app-navigation',
@@ -14,7 +16,7 @@ export class NavigationComponent implements OnInit{
   public showSearch = false;
   public User: User;
 
-  constructor(private jwtHelper: JwtHelperService) {}
+  constructor(private jwtHelper: JwtHelperService, private authService: SocialAuthService, private router: Router) {}
 
   ngOnInit() {
     const jwt_decode = this.jwtHelper.decodeToken();
@@ -24,5 +26,19 @@ export class NavigationComponent implements OnInit{
       Avatar: jwt_decode[ClaimTypes.Avatar],
       Role: jwt_decode[ClaimTypes.Role]
     };
+  }
+
+  signOut(): void {
+    localStorage.removeItem('JWT_token');
+
+    this.authService.signOut()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+      this.router.navigate(['/login']);
   }
 }
