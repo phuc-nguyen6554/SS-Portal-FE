@@ -37,13 +37,6 @@ export class CreateLeaveRequestComponent implements OnInit {
     this.isSelectLeaveDate = false;
     this.getType();
     this.setInputWidth();
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Something went wrong!'
-    });
-
-    this.messageService.add({type: 'danger', content: 'testing'});
   }
 
   getType(): void {
@@ -67,7 +60,6 @@ export class CreateLeaveRequestComponent implements OnInit {
   removeLeaveDate(key) {
     this.leaveDateNums.splice(key, 1);
     this.leaveDates.splice(key, 1);
-    console.log();
   }
   CreatLeave(): void{
     console.log(this.leaveDates);
@@ -119,8 +111,9 @@ export class CreateLeaveRequestComponent implements OnInit {
       this.messageService.add({type: 'danger', content: 'Please Select Leave Type'});
       isValid = false;
     }
-
-
+    if(isValid == false) {
+      window.scroll(0,0);
+    }
     return isValid;
   }
 
