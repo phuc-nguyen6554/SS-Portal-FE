@@ -5,6 +5,7 @@ import { LeaveType } from '../../Models/LeaveType';
 import { Router } from '@angular/router';
 import { MessageService } from '../../Services/Message/message.service';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 
 @Component({
@@ -36,16 +37,23 @@ export class CreateLeaveRequestComponent implements OnInit {
     this.isSelectLeaveDate = false;
     this.getType();
     this.setInputWidth();
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!'
+    });
+
+    this.messageService.add({type: 'danger', content: 'testing'});
   }
 
-  getType(): void{
+  getType(): void {
     this.typeService.getType()
       .subscribe(result => this.LeaveType = result);
   }
 
   setInputWidth(): void{
     const dpDatePicker = this.ref.nativeElement.querySelectorAll('mat-form-field');
-    for (const item of dpDatePicker){
+    for (const item of dpDatePicker) {
       item.style.width = '45%';
     }
   }

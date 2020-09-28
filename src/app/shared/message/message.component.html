@@ -1,0 +1,5 @@
+<div *ngIf="messageService.messages.length">
+    <p *ngFor="let message of messageService.messages" class="message">
+        <ngb-alert [type]="message.type" (close)="close(message)">{{message.content}}</ngb-alert>
+    </p>
+</div>
