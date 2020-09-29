@@ -72,7 +72,7 @@ export class CreateLeaveRequestComponent implements OnInit {
       this.leaveService.createLeave(objPut)
       .subscribe(result => {
         localStorage.setItem('flash_message', 'Leave Request Created');
-        this.router.navigate(['/leave-request']);
+        this.router.navigate(['/component/leave']);
       },
       error => {this.messageService.add({type: 'danger', content: error.error}); });
     }
