@@ -28,12 +28,21 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
+import { JwtModule } from '@auth0/angular-jwt';
+import {GoogleLoginProvider, SocialLoginModule, SocialAuthServiceConfig} from 'angularx-social-login';
+
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelSpeed: 1,
   wheelPropagation: true,
   minScrollbarLength: 20
-};   
+};
+
+export function tokenGetter(): string {
+  const jwt = localStorage.getItem('JWT_token');
+  return jwt !== null ? jwt : 'Invalid';
+}
 
 @NgModule({
   declarations: [
@@ -50,18 +59,40 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-	PerfectScrollbarModule,
+    PerfectScrollbarModule,
     NgbModule,
-    RouterModule.forRoot(Approutes, { useHash: false })
+    RouterModule.forRoot(Approutes, { useHash: false }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        allowedDomains: ['example.com'],
+        disallowedRoutes: ['http://example.com/examplebadroute/'],
+      },
+    }),
+    SocialLoginModule
   ],
   providers: [
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy
     },
-	{
+    {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '635989203613-0nc2rmtndatd7o18q4d13f4p6hn45lls.apps.googleusercontent.com'
+            ),
+          },
+        ],
+      } as SocialAuthServiceConfig,
     }
   ],
   bootstrap: [AppComponent]
